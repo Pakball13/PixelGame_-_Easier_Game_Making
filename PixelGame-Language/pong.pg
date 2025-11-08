@@ -1,0 +1,16 @@
+create ball at 400,300 size 20 color white
+create p1 at 50,250 width 20 height 100 color red
+create p2 at 730,250 width 20 height 100 color blue
+background black
+gravity off
+move right ball speed 5
+
+every frame:
+    if key w: move up p1 speed 8
+    if key s: move down p1 speed 8
+    if key up: move up p2 speed 8
+    if key down: move down p2 speed 8
+    if ball y < 0 or ball y > 580: reverse y ball
+    if ball touches p1 or ball touches p2: reverse x ball
+    if ball x < 0: text "PLAYER 2 WINS" ; quit
+    if ball x > 800: text "PLAYER 1 WINS" ; quit

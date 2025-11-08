@@ -1,0 +1,15 @@
+create bird at 200,300 size 40 color yellow
+create pipe_top at 700,0 width 80 height 350 color green
+create pipe_bottom at 700,500 width 80 height 200 color green
+background skyblue
+gravity on
+
+every frame:
+    if key space: jump bird
+    move left pipe_top speed 3
+    move left pipe_bottom speed 3
+    if pipe_top x < -100:
+        set x pipe_top to 800
+        set x pipe_bottom to 800
+    if bird y > 600 or bird y < 0: text "GAME OVER" ; quit
+    if bird touches pipe_top or bird touches pipe_bottom: text "CRASH!" ; quit
