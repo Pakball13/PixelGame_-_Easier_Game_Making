@@ -1,0 +1,51 @@
+# mario.pg - Super Mario Bros Level 1 Clone
+create mario at 100, 450 size 32 color brown
+create goomba at 850, 470 size 28 color #8B4513
+create coin1 at 220, 380 size 20 color gold
+create coin2 at 420, 280 size 20 color gold
+create coin3 at 620, 380 size 20 color gold
+create coin4 at 950, 420 size 20 color gold
+create platform at 0, 530 width 2500 height 80 color #556B2F
+create platform at 180, 460 width 120 height 25 color orange
+create platform at 350, 410 width 100 height 25 color orange
+create platform at 520, 360 width 80 height 25 color orange
+create platform at 720, 310 width 100 height 25 color orange
+create platform at 920, 460 width 150 height 25 color orange
+create platform at 1250, 410 width 100 height 25 color orange
+create platform at 1520, 360 width 200 height 25 color orange
+create platform at 380, 435 width 70 height 110 color darkgreen
+create platform at 2430, 330 width 35 height 230 color black
+create platform at 280, 360 width 32 height 32 color yellow
+create platform at 580, 320 width 32 height 32 color yellow
+
+background skyblue
+gravity on
+jump power 16
+
+every frame:
+    if key right or key d:
+        move right mario speed 7
+    if key left or key a:
+        move left mario speed 7
+    if not key left and not key right and not key a and not key d:
+        stop mario
+    if key space or key w or key up:
+        jump mario
+
+    move left goomba speed 2.5
+    if goomba x < 800:
+        move right goomba speed 2.5
+    if goomba x > 950:
+        move left goomba speed 2.5
+
+    if mario y > 600:
+        text "YOU FELL! GAME OVER" at 200, 280; wait 2; quit
+
+    if mario touches goomba:
+        text "GOOMBA GOT YOU!" at 150, 280; wait 2; quit
+
+    if mario x > 2400:
+        text "LEVEL COMPLETE!" at 150, 250; wait 4; quit
+
+    draw eyes on mario
+    draw eyes on goomba
